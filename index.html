@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Lina ❤</title>
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+        color: #333;
+        text-align: center;
+        padding: 20px;
+        overflow-x: hidden;
+    }
+    h1 {
+        font-size: 2.5em;
+        animation: fadeIn 3s ease;
+    }
+    p {
+        font-size: 1.2em;
+        max-width: 700px;
+        margin: auto;
+        animation: fadeIn 3s ease;
+    }
+    .hidden {
+        display: none;
+    }
+    button {
+        background: #ff4b5c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 1.1em;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #d83a4a;
+    }
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+    .hearts {
+        position: fixed;
+        top: -10px;
+        animation: fall 5s linear infinite;
+        color: red;
+        font-size: 24px;
+    }
+    @keyframes fall {
+        0% {transform: translateY(0);}
+        100% {transform: translateY(100vh);}
+    }
+</style>
+</head>
+<body>
+
+<h1>💌 Para mi Lina 💌</h1>
+<p id="intro">Hoy no es un día especial en el calendario, pero sí en mi corazón, porque quiero decirte todo lo que siento...  
+Haz clic para comenzar.</p>
+<button onclick="mostrarParte(1)">Comenzar 💖</button>
+
+<div id="parte1" class="hidden">
+    <p>Primero, quiero pedirte perdón si en algún momento he sido cansón o te he hecho sentir incómoda.  
+    A veces, mi amor se mezcla con miedos y no siempre sé expresarlo bien.</p>
+    <button onclick="mostrarParte(2)">Seguir ➡</button>
+</div>
+
+<div id="parte2" class="hidden">
+    <p>Me duele cuando siento que el tiempo nos separa o que tu mundo se llena de cosas nuevas que me dejan atrás.  
+    No es desconfianza, es miedo a perder esos momentos que antes eran solo tuyos y míos.</p>
+    <button onclick="mostrarParte(3)">Seguir ➡</button>
+</div>
+
+<div id="parte3" class="hidden">
+    <p>Pero más que todo eso, Lina... quiero que sepas que me siento afortunado de tenerte,  
+    que no hay día que no agradezca por tu risa, por tus abrazos y por cada instante que pasamos juntos.</p>
+    <button onclick="mostrarPregunta()">Responder una pregunta 💬</button>
+</div>
+
+<div id="pregunta" class="hidden">
+    <p>Si pudieras elegir ahora mismo, ¿qué momento volveríamos a vivir?</p>
+    <button onclick="respuesta('el primer beso')">Nuestro primer beso 😘</button>
+    <button onclick="respuesta('esa tarde en que reímos sin parar')">Una tarde riendo sin parar 😂</button>
+    <button onclick="respuesta('cualquier día, porque contigo todos son especiales')">Cualquier día contigo ❤</button>
+</div>
+
+<div id="respuesta" class="hidden">
+    <p id="textoRespuesta"></p>
+    <button onclick="mostrarParte(4)">Seguir ➡</button>
+</div>
+
+<div id="parte4" class="hidden">
+    <p>Quiero prometerte que seguiré aprendiendo a amarte mejor, a no dejar que mis miedos me controlen,  
+    y que siempre voy a luchar para que lo nuestro crezca.</p>
+    <p>Lina, te amo más de lo que puedo explicar. Y sí, a veces me siento pequeño en este mundo,  
+    pero cuando estoy contigo, me siento gigante.</p>
+    <button onclick="final()">Final 💞</button>
+</div>
+
+<div id="final" class="hidden">
+    <h2>💖 Siempre tú, Lina 💖</h2>
+    <p>No importa cuánto cambien las cosas afuera, lo que siento por ti es intocable.  
+    Eres mi hogar, mi lugar seguro y la razón por la que quiero ser mejor cada día.</p>
+    <p>Gracias por existir, por dejarme amarte y por hacerme sentir que, a pesar de mis defectos,  
+    soy suficiente para ti.</p>
+</div>
+
+<script>
+function mostrarParte(num) {
+    document.getElementById("intro").style.display = "none";
+    for(let i=1; i<=4; i++){
+        document.getElementById("parte"+i).style.display = "none";
+    }
+    document.getElementById("parte"+num).style.display = "block";
+}
+
+function mostrarPregunta(){
+    document.getElementById("pregunta").style.display = "block";
+    document.getElementById("parte3").style.display = "none";
+}
+
+function respuesta(opcion){
+    let mensaje = "";
+    if(opcion === "el primer beso") mensaje = "Ese momento quedó grabado para siempre en mi corazón. Fue el inicio de mi historia favorita.";
+    if(opcion === "esa tarde en que reímos sin parar") mensaje = "Ese día recordé que la felicidad no está en un lugar, sino en una persona... y esa persona eres tú.";
+    if(opcion === "cualquier día, porque contigo todos son especiales") mensaje = "Esa es la verdad... cualquier día contigo es perfecto.";
+    document.getElementById("textoRespuesta").innerText = mensaje;
+    document.getElementById("respuesta").style.display = "block";
+    document.getElementById("pregunta").style.display = "none";
+}
+
+function final(){
+    document.getElementById("final").style.display = "block";
+    document.getElementById("parte4").style.display = "none";
+    crearCorazones();
+}
+
+function crearCorazones(){
+    for(let i=0; i<20; i++){
+        let corazon = document.createElement("div");
+        corazon.classList.add("hearts");
+        corazon.style.left = Math.random() * 100 + "vw";
+        corazon.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        corazon.innerHTML = "❤";
+        document.body.appendChild(corazon);
+        setTimeout(()=>{ corazon.remove(); }, 5000);
+    }
+}
+</script>
+
+</body>
+</html>
